@@ -1,16 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
-
+import { AppComponent } from './components/controllers/app.component';
+import { MainTranslateService } from './services/main.translate.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    MainTranslateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

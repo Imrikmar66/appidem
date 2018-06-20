@@ -1,0 +1,15 @@
+[
+    {
+        "label": "English",
+        "abrev": "en",
+        "default": true
+    },
+    {
+        "label": "Français",
+        "abrev": "fr"
+    },
+    {
+        "label": "Espanol",
+        "abrev": "es"
+    }
+]

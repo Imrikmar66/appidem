@@ -1,0 +1,10 @@
+[
+    {
+        "label": "title",
+        "translations": {
+            "en" : "Title",
+            "fr" : "Titre",
+            "es" : "Titulo"
+        }
+    }
+]
