@@ -1,8 +1,9 @@
-import { Langs, Language, langs, LanguageJson } from "../Lang";
+import { Langs, Language, LanguageJson } from "../Lang";
 import { Translation } from "../Translation";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
+import { Translatable } from "../Translatable";
 
 @Injectable()
 export class TranslateService {
@@ -56,6 +57,19 @@ export class TranslateService {
 
         this._langs = new Langs( languages );
 
+    }
+
+    public convertTotranslatable( translatable_json: TranslatableJson ): Translatable {
+        let translations: Translation[] = [];
+        for( let language of this.langs.languages ){
+            let translation: Translation = new Translation( language, translatable_json.translations[language.abrev] );
+            translations.push( translation );
+        }
+
+        return new Translatable(
+            translations,
+            this
+        );
     }
 
 }

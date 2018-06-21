@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
 import { Translatable } from '../../libs/translations/Translatable';
-import { MainJson, MainTranslateService } from '../../services/main.translate.service';
-import { Translation } from '../../libs/translations/Translation';
-import { TranslatableComponent } from '../../libs/translations/components/translatable.abstract.component';
-import { Observable } from 'rxjs';
+import { TranslatableIdemComponent } from './translatable.idem.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: '../views/app.component.html',
-  styleUrls: ['../styles/app.component.css']
+    selector: 'app-root',
+    templateUrl: '../views/app.component.html',
+    styleUrls: ['../styles/app.component.css']
 })
-export class AppComponent {
+export class AppComponent extends TranslatableIdemComponent {
 
-    public title: string = "Test";
+    public title: Translatable;
 
 }

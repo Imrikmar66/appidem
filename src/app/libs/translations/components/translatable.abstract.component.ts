@@ -2,10 +2,9 @@ import { Langs } from '../Lang';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService, TranslatableJson } from '../services/translate.service';
-import { MainJson } from '../../../services/main.translate.service';
 
 @Component({})
-export abstract class TranslatableComponent {
+export abstract class TranslatableComponent<T extends TranslatableJson> implements OnInit {
 
     protected langsObs: Observable<Langs>;
 
@@ -13,19 +12,18 @@ export abstract class TranslatableComponent {
         this.langsObs = this.translateService.getLangs();
     }
 
-    abstract translateMethod(): Observable<TranslatableJson[]>;
+    protected abstract translateMethod(): Observable<T[]>;
+    protected abstract assignTranslations( translated_items: T[] ): void;
 
     ngOnInit() {
         this.langsObs.subscribe( () => {
             this.translateMethod()
                 .subscribe(
-                    ( elements: TranslatableJson[] ) => {
+                    ( elements: T[] ) => {
                         this.assignTranslations( elements );
                     }
                 );
         } );
     }
-
-    abstract assignTranslations( elements: TranslatableJson[] ): void;
 
 }
