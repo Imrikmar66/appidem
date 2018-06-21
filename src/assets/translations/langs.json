@@ -1,12 +1,12 @@
 [
     {
         "label": "English",
-        "abrev": "en",
-        "default": true
+        "abrev": "en"
     },
     {
         "label": "Français",
-        "abrev": "fr"
+        "abrev": "fr",
+        "default": true
     },
     {
         "label": "Espanol",
