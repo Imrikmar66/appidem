@@ -1,24 +1,24 @@
 import { HttpClient } from '@angular/common/http';
-import { Model, ModelJson } from '../class/Model';
+import { CrudModel, CrudModelJson } from '../class/CrudModel';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 
-export interface SuccessJson {
+interface SuccessJson {
     success: boolean;
     code?: number;
 }
 
-export interface GenericModelJsonList<K> extends SuccessJson {
+interface GenericModelJsonList<K> extends SuccessJson {
     models: K[]
 }
 
-export interface GenericModelJson<K> extends SuccessJson {
+interface GenericModelJson<K> extends SuccessJson {
     model: K
 }
 
 @Injectable()
-export abstract class CrudService<T extends Model, K extends ModelJson> {
+export abstract class CrudService<T extends CrudModel, K extends CrudModelJson> {
 
     private api_url: string = "http://localhost:8000/api/" + this.getModelDefinition();
 

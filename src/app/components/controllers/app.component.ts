@@ -10,31 +10,8 @@ import { Observable } from 'rxjs';
   templateUrl: '../views/app.component.html',
   styleUrls: ['../styles/app.component.css']
 })
-export class AppComponent extends TranslatableComponent {
+export class AppComponent {
 
-    public title: Translatable;
-
-    constructor( protected translateService: MainTranslateService ) {
-        super( translateService );
-    }
-
-    translateMethod(): Observable<MainJson[]> {
-        return this.translateService.getMains();
-    }
-
-    assignTranslations( mains: MainJson[] ): void {
-
-        for( let main of mains ){
-
-            let translations: Translation[] = [];
-            for( let language of this.translateService.langs.languages ){
-                let translation: Translation = new Translation( language, main.translations[language.abrev] );
-                translations.push( translation );
-            }
-
-            this.title = new Translatable( translations, this.translateService );
-        }
-
-    }
+    public title: string = "Test";
 
 }

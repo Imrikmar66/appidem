@@ -1,39 +1,36 @@
-import { Model, ModelJson } from "../../libs/pm-crud-framework/class/Model";
+import { Role } from "./Role";
+import { Person, PersonLiteral } from "../core/Person";
+import { Model, ModelLiteral } from "../commons/Model";
+import { Permission, PermissionLiteral } from "./Permission";
 
-export class User extends Model {
+export class User extends Model<UserLiteral> {
+    
+    private _password_hash: string;
+    private _person: Person;
+    private _permission: Permission;
 
-    private _email: string;
-    private _password: string;
 
-    get email(): string {
-        return this._email;
-    }
-
-    set email( email ) {
-        this._email = email;
-    }
-
-    get password(): string {
-        return this._password;
-    }
-
-    set password( password ) {
-        this._password = password;
-    }
-
-    public toJSON(): UserJson {
+    public toLiteral(): UserLiteral {
         return {
             id: this.id,
-            email: this._email,
-            password: this._password
-        }
+            password_hash: this._password_hash,
+            permission: this._permission.toLiteral(),
+            person: this._person.toLiteral()
+        };
+    }
+
+    public hydrate( data: UserLiteral ){
+        
+        this._password_hash = data.password_hash;
+        this._permission = new Permission( data.permission );
+        this._person = new Person( data.person );
+
     }
 
 }
 
-export interface UserJson extends ModelJson {
-
-    email: string;
-    password: string;
-
+interface UserLiteral extends ModelLiteral {
+    password_hash: string;
+    permission: PermissionLiteral;
+    person: PersonLiteral;
 }

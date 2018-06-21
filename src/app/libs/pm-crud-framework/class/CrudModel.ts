@@ -1,12 +1,12 @@
-export abstract class Model {
+export abstract class CrudModel {
 
     protected _id: number;
 
-    constructor( datas?: ModelJson ){
+    constructor( datas?: CrudModelJson ){
         if( datas ) this.hydrate( datas );
     }
 
-    public abstract toJSON(): ModelJson;
+    public abstract toJSON(): CrudModelJson;
 
     public get id(): number {
         return this._id;
@@ -16,11 +16,11 @@ export abstract class Model {
         this._id = id;
     }
 
-    public isEqual( model: Model ){
+    public isEqual( model: CrudModel ){
         return this.id == model.id;
     }
 
-    public hydrate( datas: ModelJson ) {
+    public hydrate( datas: CrudModelJson ) {
 
         for( let key in datas ){
 
@@ -39,7 +39,7 @@ export abstract class Model {
 
 }
 
-export interface ModelJson {
+export interface CrudModelJson {
 
     id: number;
 
